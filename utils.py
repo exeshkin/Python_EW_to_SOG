@@ -70,10 +70,10 @@ def name_file(cb_item):
     '''
 
     if cb_item == 'cb_message':
-        name = 'Послание_EW.sog'
+        name = 'EW_Послание.sog'
 
     if cb_item == 'cb_vin':
-        name = 'Вин_EW.sog'
+        name = 'EW_Вин.sog'
 
     return name
 
