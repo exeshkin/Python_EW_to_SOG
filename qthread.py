@@ -29,11 +29,14 @@ class CreateSog(QThread):
 
         # Начальный счетчик проповеди
         number = 1
+        # Проверить есть ли папка sog на рабочем столе, если нет, то создать
+        if os.path.exists(utils.path_desktop) == False:
+            os.mkdir(utils.path_desktop)
 
-        # Проверить есть ли файл. Если есть - удалить
-        if os.path.isfile(f'finished_sog_file/{utils.name_file(self.mainwindow.combobox)}'):
+        # Проверить есть ли файл sog, если есть, то удалить
+        if os.path.isfile(f'{utils.path_desktop}/{utils.name_file(self.mainwindow.combobox)}'):
             os.remove(
-                f'finished_sog_file/{utils.name_file(self.mainwindow.combobox)}')
+                f'{utils.path_desktop}/{utils.name_file(self.mainwindow.combobox)}')
         # Удалить все файлы из папки
         utils.remove_files('temp_dwn_json')
 
@@ -229,7 +232,7 @@ class CreateSog(QThread):
                         current_sermon += f'{line}. {self.splitting_line(file_json[str_line])}'
 
                     # Открыть файл sog для добавления проповедей
-                    with open(f'finished_sog_file/{utils.name_file(self.mainwindow.combobox)}', 'a', encoding='utf-8') as f:
+                    with open(f'{utils.path_desktop}/{utils.name_file(self.mainwindow.combobox)}', 'a', encoding='utf-8') as f:
                         if len(keys_file_json) != 1:
                             # Записать отформатированную проповедь в файл sog
                             f.write(str(f'{current_sermon}\n'))
@@ -351,7 +354,7 @@ class CreateSog(QThread):
                     sermon_exclusion += f.read()
 
                 # Открыть файл sog
-                with open(f'finished_sog_file/{utils.name_file(self.mainwindow.combobox)}', 'a', encoding='utf-8') as f:
+                with open(f'{utils.path_desktop}/{utils.name_file(self.mainwindow.combobox)}', 'a', encoding='utf-8') as f:
                     # Добавить в файл текущую проповедь
                     f.write(str(f'{sermon_exclusion}\n'))
 

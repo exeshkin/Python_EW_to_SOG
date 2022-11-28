@@ -74,7 +74,7 @@ class EW_Message_in_SOG(QMainWindow):
         self.ui.progress_bar.setValue(0)
         # Отобразить сообщение окне приложения
         self.ui.log_field.appendPlainText(
-            f'Файл "{utils.name_file(self.combobox)}" готов!\nОн находтися в папке "finished_sog_file"')
+            f'Файл "{utils.name_file(self.combobox)}" готов!\nОн находтися в папке "SOG" на Рабочем столе')
         # Активировать кнопку 'Создать *.sog'
         self.ui.btn_start.setEnabled(True)
         # Активировать QComboBox
